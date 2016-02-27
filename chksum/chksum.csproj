@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ChecksumCalculators\Sha1Checksum.cs" />
+    <Compile Include="ChecksumCalculators\Sha256Checksum.cs" />
     <Compile Include="Helpers\CalculationHost.cs" />
     <Compile Include="Helpers\SumFormatter.cs" />
     <Compile Include="Contracts\ICalculator.cs" />

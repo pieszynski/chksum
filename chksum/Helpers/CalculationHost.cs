@@ -10,6 +10,16 @@ namespace chksum.Helpers
 {
     public class CalculationHost
     {
+
+        protected string Mode;
+
+        public CalculationHost(string sMode)
+        {
+            this.Mode = (sMode ?? "-sha1")
+                .ToLowerInvariant()
+                .Trim();
+        }
+
         /// <summary>
         /// Wyznaczenie sumy kontrolnej dla pliku.
         /// </summary>
@@ -22,7 +32,10 @@ namespace chksum.Helpers
 
             using (Stream fileStream = File.OpenRead(sFilePath))
             {
-                ICalculator sumCalc = new Sha1Checksum();
+                ICalculator sumCalc = "-sha256" == this.Mode
+                    ? (ICalculator)new Sha256Checksum()
+                    : (ICalculator)new Sha1Checksum();
+
                 string response = sumCalc.CalculateChecksum(fileStream);
                 return response;
             }
